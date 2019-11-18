@@ -99,14 +99,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class HelloWorld extends Vue {
-  hodor: string = "";
+  hodor: string = '';
   @Prop() private msg!: string;
   mounted() {
-    this.hodor = "Hodor";
+    this.hodor = 'Hodor';
   }
 }
 </script>

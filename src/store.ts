@@ -19,11 +19,12 @@ export default new Vuex.Store({
   mutations: {
     [UPDATE_GAMES](state, games) {
       console.log('mutate users', games);
-      state.games = games;
+      // state.games = games;
       console.log(state);
     },
     [SET_LOADING](state, loading) {
-      state.loading = loading;
+      console.log('state', state);
+      // state.loading = loading;
     },
   },
   actions: {
@@ -39,7 +40,7 @@ export default new Vuex.Store({
             },
           },
         )
-        .then((gamesParsed) => {
+        .then((gamesParsed: any) => {
           commit(UPDATE_GAMES, gamesParsed);
           commit(SET_LOADING, false);
         });

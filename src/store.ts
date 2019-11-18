@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import axios from 'axios';
 
 Vue.use(Vuex);
 
@@ -30,7 +31,7 @@ export default new Vuex.Store({
   actions: {
     getGames({ commit }) {
       commit(SET_LOADING, true);
-      return Vue.axios
+      return axios
         .get(
           'https://api-2445582011268.apicast.io/games/?filter[release_dates.platform][eq]=29&limit=50',
           {

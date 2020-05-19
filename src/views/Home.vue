@@ -1,8 +1,7 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
     <p>Count of the games: {{ games.length }}</p>
-    <div v-for="({name}, key) in games" v-bind:key="key">{{ key }}. {{ name }}</div>
+    <div v-for="({name}, key) in games" v-bind:key="key">{{ key + 1 }}. {{ name }}</div>
   </div>
 </template>
 

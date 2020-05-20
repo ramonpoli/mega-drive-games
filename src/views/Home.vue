@@ -1,25 +1,29 @@
 <template>
-  <div class="home">
+  <div class="md-home">
     <p>Count of the games: {{ games.length }}</p>
-    <div v-for="({name}, key) in games" v-bind:key="key">{{ key + 1 }}. {{ name }}</div>
+    <wheel :games="games"></wheel>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import axiosHelper from "../helpers/axios";
 import axios from "axios";
+import { Component, Vue } from "vue-property-decorator";
+import AxiosHelper from "../helpers/axios";
+import Wheel from "../components/Wheel.vue";
 
 @Component({
-  components: {}
+  components: { Wheel }
 })
 export default class Home extends Vue {
   games = [];
 
   async mounted() {
-    const axiosInstance = new axiosHelper();
+    const axiosInstance = new AxiosHelper();
     this.games = (await axiosInstance.getGames()) as any;
     console.log(this.games);
   }
 }
 </script>
+<style lang="scss">
+@import "../styles/home.scss";
+</style>

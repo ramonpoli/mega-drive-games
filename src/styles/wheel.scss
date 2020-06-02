@@ -1,0 +1,107 @@
+@keyframes scrollPreviousDown {
+  from {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  to {
+    transform: translate(-4.5vw, -10vw) rotate(-25deg);
+  }
+}
+@keyframes scrollActiveDown {
+  from {
+    transform: translate(-4.5vw, 10vw) rotate(25deg);
+  }
+  to {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+@keyframes scrollNextDown {
+  from {
+    opacity: 0;
+    transform: translate(-10vw, 30vw) rotate(90deg);
+  }
+  to {
+    opacity: 0.3;
+    transform: translate(-4.5vw, 10vw) rotate(25deg);
+  }
+}
+@keyframes scrollPreviousUp {
+  from {
+    opacity: 0;
+    transform: translate(10vw, -30vw) rotate(-90deg);
+  }
+  to {
+    opacity: 0.3;
+    transform: translate(-4.5vw, -10vw) rotate(-25deg);
+  }
+}
+@keyframes scrollActiveUp {
+  from {
+    transform: translate(-4.5vw, -10vw) rotate(-25deg);
+  }
+  to {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+@keyframes scrollNextUp {
+  from {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  to {
+    transform: translate(-4.5vw, 10vw) rotate(25deg);
+  }
+}
+
+.wheel {
+  background-size: cover;
+  padding: 5px 15px;
+  position: relative;
+  height: 58vh;
+  &__element {
+    font-size: 1.7rem;
+    opacity: 0;
+    transition: opacity 1.2s cubic-bezier(0.165, 0.84, 0.44, 1),
+      visibility 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: absolute;
+    top: 50%;
+    left: 12%;
+    transform-origin: left;
+    height: 92px;
+
+    &.previousDown {
+      animation: 1s scrollPreviousDown;
+      transform: translate(-4.5vw, -10vw) rotate(-25deg);
+      opacity: 0.3;
+    }
+    &.activeDown {
+      animation: 1s scrollActiveDown;
+      opacity: 1;
+    }
+    &.nextDown {
+      animation: 1s scrollNextDown;
+      transform: translate(-4.5vw, 10vw) rotate(25deg);
+      opacity: 0.3;
+    }
+    &.previousUp {
+      animation: 1s scrollPreviousUp;
+      transform: translate(-4.5vw, -10vw) rotate(-25deg);
+      opacity: 0.3;
+    }
+    &.activeUp {
+      animation: 1s scrollActiveUp;
+      opacity: 1;
+    }
+    &.nextUp {
+      animation: 1s scrollNextUp;
+      transform: translate(-4.5vw, 10vw) rotate(25deg);
+      opacity: 0.3;
+    }
+  }
+
+  &__image {
+    width: 600px;
+    height: 320px;
+    right: 0;
+    position: absolute;
+    top: 14vh;
+  }
+}

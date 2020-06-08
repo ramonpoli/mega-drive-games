@@ -1,53 +1,57 @@
 
 <template>
-  <div class="wheel">
-    <!-- {{wheelStyle}} -->
-    <div
-      v-for="({name}, key) in games"
-      v-bind:key="key"
-      :class="['wheel__element',
-         key === activeElementKey ? activeClassName : '',
-        key === activeElementKey - 1 ? previousClassName : '',
-        key === activeElementKey + 1 ? nextClassName: '']"
-    >{{ key + 1 }}. {{ name }}</div>
-    <img
-      class="wheel__image"
-      :src="games[activeElementKey] && games[activeElementKey].background_image"
-    />
+  <div class="wheel d-flex">
+    <div class="wheel__game-titles flex-grow-1">
+      <div
+        v-for="(game, key) in games"
+        v-bind:key="key"
+        :class="['wheel__element',
+          key === activeElementKey ? activeClassName : '',
+          key === activeElementKey - 1 ? previousClassName : '',
+          key === activeElementKey + 1 ? nextClassName: '']"
+      >{{ key + 1 }}. {{ game.name }}</div>
+    </div>
+    <GameCard v-if="games[activeElementKey]" class="flex-grow-1" :game="games[activeElementKey]" />
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop } from 'vue-property-decorator';
+import GameCard from './GameCard.vue';
 @Component({
-  components: {}
-})
+  components: {
+  GameCard
+  }
+  })
 export default class Wheel extends Vue {
   @Prop({ required: true }) games!: any[];
   private activeElementKey: number = 0;
-  private activeClassName: string = "";
-  private previousClassName: string = "";
-  private nextClassName: string = "nextDown";
+  private activeClassName: string = 'activeDown';
+  private previousClassName: string = '';
+  private nextClassName: string = 'nextDown';
   async mounted() {
-    const wheelElement = document.querySelector(".wheel");
-    wheelElement && wheelElement.addEventListener("wheel", this.handleScroll);
+    const wheelElement = document.querySelector('.wheel');
+    if (wheelElement) {
+      wheelElement.addEventListener('wheel', this.handleScroll);
+    }
   }
   unmounted() {
-    const wheelElement = document.querySelector(".wheel");
-    wheelElement &&
-      wheelElement.removeEventListener("wheel", this.handleScroll);
+    const wheelElement = document.querySelector('.wheel');
+    if (wheelElement) {
+      wheelElement.removeEventListener('wheel', this.handleScroll);
+    }
   }
   handleScroll(event: any) {
-    const direction = event.deltaY && event.deltaY >= 0 ? "down" : "up";
-    if (direction === "up") {
+    const direction = event.deltaY && event.deltaY >= 0 ? 'down' : 'up';
+    if (direction === 'up') {
       this.activeElementKey -= 1;
-      this.activeClassName = "activeUp";
-      this.previousClassName = "previousUp";
-      this.nextClassName = "nextUp";
+      this.activeClassName = 'activeUp';
+      this.previousClassName = 'previousUp';
+      this.nextClassName = 'nextUp';
     } else {
       this.activeElementKey += 1;
-      this.activeClassName = "activeDown";
-      this.previousClassName = "previousDown";
-      this.nextClassName = "nextDown";
+      this.activeClassName = 'activeDown';
+      this.previousClassName = 'previousDown';
+      this.nextClassName = 'nextDown';
     }
     if (this.activeElementKey < 0) {
       this.activeElementKey = 0;

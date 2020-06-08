@@ -22,12 +22,12 @@ export default new Vuex.Store({
   mutations: {
     [UPDATE_GAMES](state, games) {
       console.log('mutate users', games);
-      state.games = games;
+      // state.games = games;
       console.log(state);
     },
     [SET_LOADING](state, loading) {
       console.log('state', state);
-      state.loading = loading;
+      // state.loading = loading;
     },
   },
   actions: {

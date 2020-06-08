@@ -1,8 +1,9 @@
+@import './variables';
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: "Segoe UI", "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #151515;
+  background-color: $dark-gray-2;
   color: #fff;
   border-radius: 40px;
 }
@@ -33,4 +34,20 @@ body {
 }
 .fit {
   height: 100%;
+}
+.d-flex {
+  display: -ms-flexbox;
+  display: flex;
+}
+.flex-grow-0 {
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+}
+.flex-grow-1 {
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+.flex-grow-2 {
+  -ms-flex-positive: 2;
+  flex-grow: 2;
 }

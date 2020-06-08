@@ -52,10 +52,11 @@
 }
 
 .wheel {
-  background-size: cover;
   padding: 5px 15px;
   position: relative;
-  height: 58vh;
+  &__game-titles {
+    min-width: 40%;
+  }
   &__element {
     font-size: 1.7rem;
     opacity: 0;
@@ -63,7 +64,7 @@
       visibility 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
     position: absolute;
     top: 50%;
-    left: 12%;
+    left: 9%;
     transform-origin: left;
     height: 92px;
 
@@ -95,13 +96,5 @@
       transform: translate(-4.5vw, 10vw) rotate(25deg);
       opacity: 0.3;
     }
-  }
-
-  &__image {
-    width: 600px;
-    height: 320px;
-    right: 0;
-    position: absolute;
-    top: 14vh;
   }
 }

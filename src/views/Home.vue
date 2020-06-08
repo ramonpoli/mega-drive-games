@@ -6,14 +6,14 @@
 </template>
 
 <script lang="ts">
-import axios from "axios";
-import { Component, Vue } from "vue-property-decorator";
-import AxiosHelper from "../helpers/axios";
-import Wheel from "../components/Wheel.vue";
+import axios from 'axios';
+import { Component, Vue } from 'vue-property-decorator';
+import AxiosHelper from '../helpers/axios';
+import Wheel from '../components/Wheel.vue';
 
 @Component({
   components: { Wheel }
-})
+  })
 export default class Home extends Vue {
   games = [];
 

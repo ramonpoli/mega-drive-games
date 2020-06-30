@@ -5,6 +5,9 @@
       <router-link to="/about">About</router-link>
     </div>
     <router-view/>
+    <footer>
+      Powered by <a href="https://rawg.io/" target="blank">Rawg.io</a>
+    </footer>
   </div>
 </template>
 

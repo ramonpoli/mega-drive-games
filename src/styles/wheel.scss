@@ -54,14 +54,15 @@
 .wheel {
   padding: 5px 15px;
   position: relative;
+  height: 550px;
   &__game-titles {
     min-width: 40%;
   }
   &__element {
     font-size: 1.7rem;
     opacity: 0;
-    transition: opacity 1.2s cubic-bezier(0.165, 0.84, 0.44, 1),
-      visibility 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+    // transition: opacity 1.2s cubic-bezier(0.165, 0.84, 0.44, 1),
+    //   visibility 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
     position: absolute;
     top: 50%;
     left: 9%;

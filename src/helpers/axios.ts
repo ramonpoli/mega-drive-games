@@ -1,16 +1,17 @@
-import { Vue } from 'vue-property-decorator';
 import axios from 'axios';
+import { rawgParams } from '@/stores/actions';
 
-export default class AxiosHelper extends Vue {
-  getGames = async () => {
+export default {
+  getGames: async (params: rawgParams) => {
     const result = await axios('https://api.rawg.io/api/games', {
       method: 'GET',
       params: {
-        ordering: 'popularity',
-        page_size: 10,
+        ordering: params.ordering,
+        page_size: params.count,
+        page: params.page,
         platforms: 167,
       },
     });
     return result.data.results;
-  };
-}
+  },
+};

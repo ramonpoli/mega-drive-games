@@ -2,7 +2,7 @@ import Vue from 'vue';
 import './plugins/axios';
 import App from './App.vue';
 import router from './router';
-import store from './stores/store';
+import store from './stores/.';
 import './registerServiceWorker';
 
 Vue.config.productionTip = false;

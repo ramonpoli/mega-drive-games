@@ -28,36 +28,63 @@ export default class Wheel extends Vue {
   private activeClassName: string = 'activeDown';
   private previousClassName: string = '';
   private nextClassName: string = 'nextDown';
+  private startPosition: number = 0;
   async mounted() {
     const wheelElement = document.querySelector('.wheel');
     if (wheelElement) {
       wheelElement.addEventListener('wheel', this.handleScroll);
+      wheelElement.addEventListener('touchstart', this.handleTouchStart);
     }
   }
   unmounted() {
     const wheelElement = document.querySelector('.wheel');
     if (wheelElement) {
       wheelElement.removeEventListener('wheel', this.handleScroll);
+      wheelElement.removeEventListener('touchstart', this.handleTouchStart);
     }
   }
   handleScroll(event: any) {
     const direction = event.deltaY && event.deltaY >= 0 ? 'down' : 'up';
-    if (direction === 'up') {
-      this.activeElementKey -= 1;
-      this.activeClassName = 'activeUp';
-      this.previousClassName = 'previousUp';
-      this.nextClassName = 'nextUp';
+    this.scrollContent(direction);
+    event.preventDefault();
+  }
+  private scrollContent(direction: string) {
+    if (direction==='up') {
+      this.activeElementKey-=1;
+      this.activeClassName='activeUp';
+      this.previousClassName='previousUp';
+      this.nextClassName='nextUp';
     } else {
-      this.activeElementKey += 1;
-      this.activeClassName = 'activeDown';
-      this.previousClassName = 'previousDown';
-      this.nextClassName = 'nextDown';
+      this.activeElementKey+=1;
+      this.activeClassName='activeDown';
+      this.previousClassName='previousDown';
+      this.nextClassName='nextDown';
     }
-    if (this.activeElementKey < 0) {
-      this.activeElementKey = 0;
+    if (this.activeElementKey<0) {
+      this.activeElementKey=0;
     }
-    if (this.activeElementKey > this.games.length - 1) {
-      this.activeElementKey = this.games.length - 1;
+    if (this.activeElementKey> this.games.length-1) {
+      this.activeElementKey=this.games.length-1;
+    }
+  }
+
+  handleTouchStart(event: any) {
+    const firstTouch = event.changedTouches[0];
+    this.startPosition = parseInt(firstTouch.clientY, 10);
+    const wheelElement = document.querySelector('.wheel');
+    if (wheelElement) {
+      wheelElement.addEventListener('touchend', this.handleTouchEnd);
+    }
+    event.preventDefault();
+  }
+  handleTouchEnd(event: any) {
+    const firstTouch = event.changedTouches[0];
+    const distanceTouched = parseInt(firstTouch.clientY, 10) - this.startPosition;
+    this.scrollContent(distanceTouched > 0 ? 'up': 'down');
+    event.preventDefault();
+    const wheelElement = document.querySelector('.wheel');
+    if (wheelElement) {
+      wheelElement.removeEventListener('touchend', this.handleTouchEnd);
     }
   }
 }

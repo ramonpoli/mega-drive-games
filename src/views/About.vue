@@ -5,7 +5,7 @@
       <a href="https://twitter.com/_PoLy_" target="blank">
         <div class="md-about__twitter mr-2"></div>
       </a>
-      <a href="https://www.linkedin.com/in/raypoly/" target="blank">
+      <a href="https://www.linkedin.com/in/ramon-polidura/" target="blank">
         <div class="md-about__linkedIn mr-2"></div>
       </a>
       <a href="https://github.com/ramonpoli" target="blank">

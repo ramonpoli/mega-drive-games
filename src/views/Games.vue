@@ -2,34 +2,42 @@
   <div v-if="loading">loading</div>
   <div v-else>
     <div class="md-games__container">
-      <div class="md-games__apiForm">
+      <div class="md-games__apiForm mb-9">
         <span class="mr-2">Game count: {{ games.length }}</span>
-        <select
-          class="md-games__ordering mr-2"
-          v-on:change="getGamesWithOrdering"
-          v-model="orderingValue"
-        >
-          <option disabled value="">Order by</option>
-          <option value="popularity">popularity</option>
-          <option value="-released">released</option>
-          <option value="name">name</option>
-        </select>
-        <select
-          class="md-games__page"
-          v-on:change="getGamesPage"
-          v-model="pageValue"
-        >
-          <option value="1">Page 1</option>
-          <option value="2">Page 2</option>
-          <option value="3">Page 3</option>
-          <option value="4">Page 4</option>
-          <option value="5">Page 5</option>
-          <option value="6">Page 6</option>
-          <option value="7">Page 7</option>
-          <option value="8">Page 8</option>
-          <option value="9">Page 9</option>
-          <option value="10">Page 10</option>
-        </select>
+        <v-container>
+          <v-row align="center">
+            <v-col cols="6">
+              <v-subheader>
+                Order by
+              </v-subheader>
+            </v-col>
+
+            <v-col cols="6">
+              <v-select
+                class="md-games__ordering"
+                :items="orderByValues"
+                v-on:change="getGamesWithOrdering"
+                v-model="orderingValue"
+              ></v-select>
+            </v-col>
+          </v-row>
+          <v-row align="center">
+            <v-col cols="6">
+              <v-subheader>
+                Page
+              </v-subheader>
+            </v-col>
+
+            <v-col cols="6">
+              <v-select
+                class="md-games__page"
+                :items="pageValues"
+                v-on:change="getGamesPage"
+                v-model="pageValue"
+              ></v-select>
+            </v-col>
+          </v-row>
+        </v-container>
       </div>
       <wheel :games="games"></wheel>
     </div>
@@ -48,22 +56,18 @@ export default {
   data: () => ({
     orderingValue: '',
     pageValue: 1,
+    orderByValues: ['popularity', '-released', 'name'],
+    pageValues: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
   }),
   methods: {
-    getGamesWithOrdering(this: any, event: any) {
-      const {
-        target: { value },
-      } = event;
+    getGamesWithOrdering(this: any, value: string) {
       if (value) {
         this.orderingValue = value;
         this.getGames({ ordering: value });
       }
     },
-    getGamesPage(this: any, event: any) {
-      const {
-        target: { value },
-      } = event;
-      const pageNumber = parseInt(value, 10);
+    getGamesPage(this: any, page: string) {
+      const pageNumber = parseInt(page, 10);
       if (pageNumber) {
         this.pageValue = pageNumber;
         this.getGames({ page: pageNumber });

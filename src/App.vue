@@ -1,16 +1,39 @@
 <template>
-  <div id="app" class="fit">
-    <div id="nav">
-      <router-link to="/">Games</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-    <footer>
+  <v-app>
+    <v-app-bar app color="primary" dense class="d-flex">
+      <v-toolbar-title>Mega-drive games</v-toolbar-title>
+      <v-spacer></v-spacer>
+
+      <div class="ml-4">
+        <router-link to="/">Games</router-link>
+        <router-link to="/about" class="ml-2">About</router-link>
+      </div>
+    </v-app-bar>
+
+    <v-main>
+      <router-view />
+    </v-main>
+    <v-footer>
       Powered by <a href="https://rawg.io/" target="blank">Rawg.io</a>
-    </footer>
-  </div>
+    </v-footer>
+  </v-app>
 </template>
 
+<script lang="ts">
+import Vue from 'vue';
+
+export default Vue.extend({
+  name: 'App',
+
+  data: () => ({
+    //
+  }),
+});
+</script>
+
 <style lang="scss">
-@import "./styles/main.scss";
+@import "~vuetify/src/styles/main.sass";
+.v-application .v-toolbar a {
+  color: #ffffff;
+}
 </style>

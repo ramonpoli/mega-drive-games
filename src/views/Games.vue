@@ -7,9 +7,7 @@
         <v-container>
           <v-row align="center">
             <v-col cols="6">
-              <v-subheader>
-                Order by
-              </v-subheader>
+              <v-subheader> Order by </v-subheader>
             </v-col>
 
             <v-col cols="6">
@@ -23,9 +21,7 @@
           </v-row>
           <v-row align="center">
             <v-col cols="6">
-              <v-subheader>
-                Page
-              </v-subheader>
+              <v-subheader> Page </v-subheader>
             </v-col>
 
             <v-col cols="6">

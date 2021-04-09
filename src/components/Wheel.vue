@@ -17,11 +17,12 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import GameCard from './GameCard.vue';
+
 @Component({
   components: {
-  GameCard
-  }
-  })
+    GameCard,
+  },
+})
 export default class Wheel extends Vue {
   @Prop({ required: true }) games!: any[];
   private activeElementKey: number = 0;
@@ -49,22 +50,22 @@ export default class Wheel extends Vue {
     event.preventDefault();
   }
   private scrollContent(direction: string) {
-    if (direction==='up') {
-      this.activeElementKey-=1;
-      this.activeClassName='activeUp';
-      this.previousClassName='previousUp';
-      this.nextClassName='nextUp';
+    if (direction === 'up') {
+      this.activeElementKey -= 1;
+      this.activeClassName = 'activeUp';
+      this.previousClassName = 'previousUp';
+      this.nextClassName = 'nextUp';
     } else {
-      this.activeElementKey+=1;
-      this.activeClassName='activeDown';
-      this.previousClassName='previousDown';
-      this.nextClassName='nextDown';
+      this.activeElementKey += 1;
+      this.activeClassName = 'activeDown';
+      this.previousClassName = 'previousDown';
+      this.nextClassName = 'nextDown';
     }
-    if (this.activeElementKey<0) {
-      this.activeElementKey=0;
+    if (this.activeElementKey < 0) {
+      this.activeElementKey = 0;
     }
-    if (this.activeElementKey> this.games.length-1) {
-      this.activeElementKey=this.games.length-1;
+    if (this.activeElementKey > this.games.length - 1) {
+      this.activeElementKey = this.games.length - 1;
     }
   }
 
@@ -80,7 +81,7 @@ export default class Wheel extends Vue {
   handleTouchEnd(event: any) {
     const firstTouch = event.changedTouches[0];
     const distanceTouched = parseInt(firstTouch.clientY, 10) - this.startPosition;
-    this.scrollContent(distanceTouched > 0 ? 'up': 'down');
+    this.scrollContent(distanceTouched > 0 ? 'up' : 'down');
     event.preventDefault();
     const wheelElement = document.querySelector('.wheel');
     if (wheelElement) {

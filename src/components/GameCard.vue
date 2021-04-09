@@ -26,9 +26,10 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
+
 @Component({
-  components: {}
-  })
+  components: {},
+})
 export default class GameCard extends Vue {
     @Prop({ required: true }) game!: any;
 }

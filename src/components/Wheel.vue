@@ -30,6 +30,7 @@ export default class Wheel extends Vue {
   private previousClassName: string = '';
   private nextClassName: string = 'nextDown';
   private startPosition: number = 0;
+  private animating: boolean = false;
   async mounted() {
     const wheelElement = document.querySelector('.wheel');
     if (wheelElement) {
@@ -45,9 +46,13 @@ export default class Wheel extends Vue {
     }
   }
   handleScroll(event: any) {
-    const direction = event.deltaY && event.deltaY >= 0 ? 'down' : 'up';
-    this.scrollContent(direction);
-    event.preventDefault();
+    if (!this.animating) {
+      this.animating = true;
+      const direction = event.deltaY && event.deltaY >= 0 ? 'down' : 'up';
+      this.scrollContent(direction);
+      event.preventDefault();
+      setTimeout(() => { this.animating = false; }, 800);
+    }
   }
   private scrollContent(direction: string) {
     if (direction === 'up') {
